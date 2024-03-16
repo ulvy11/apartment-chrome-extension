@@ -1,5 +1,5 @@
-import { ApartmentForm } from "./form/apartmentForm";
+import { Forms } from "./form/forms";
 import { FillerManager } from "./filler/filler-manager";
 
-ApartmentForm.init();
+Forms.init();
 new FillerManager();
