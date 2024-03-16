@@ -3,6 +3,7 @@
 const path = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const CopyPlugin = require("copy-webpack-plugin");
 webpack = require("webpack");
 require("dotenv").config();
 
@@ -20,6 +21,9 @@ const config = {
     new webpack.DefinePlugin({ process: { env: JSON.stringify(process.env) } }),
     new HtmlWebpackPlugin({
       template: "src/popup.html",
+    }),
+    new CopyPlugin({
+      patterns: [{ from: "src/popup.css", to: "popup.css" }],
     }),
 
     // Add your plugins here
