@@ -23,7 +23,10 @@ const config = {
       template: "src/popup.html",
     }),
     new CopyPlugin({
-      patterns: [{ from: "src/popup.css", to: "popup.css" }],
+      patterns: [
+        { from: "src/popup.css", to: "popup.css" },
+        { from: "manifest.json", to: "manifest.json" },
+      ],
     }),
 
     // Add your plugins here
