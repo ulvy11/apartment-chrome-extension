@@ -1,0 +1,19 @@
+{
+  "name": "apartment-chrome-extension",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ulvy11/apartment-chrome-extension.git"
+  },
+  "author": "Ulvy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ulvy11/apartment-chrome-extension/issues"
+  },
+  "homepage": "https://github.com/ulvy11/apartment-chrome-extension#readme"
+}
