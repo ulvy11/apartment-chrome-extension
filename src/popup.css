@@ -1,0 +1,21 @@
+:root {
+  --invalid-color: #dc3545;
+}
+
+body {
+  min-width: 800px;
+}
+
+button[id*="removeImage"],
+button[id*="removeComment"] {
+  margin-top: 0.6rem;
+}
+
+.error {
+  color: var(--invalid-color);
+}
+
+.success-link {
+  color: #86194c;
+  text-decoration: none;
+}

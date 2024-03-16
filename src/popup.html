@@ -5,9 +5,220 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Apartment extension</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="popup.css" />
   </head>
   <body>
-    <h1>Test</h1>
+    <div class="container text-center p-1">
+      <h1>Appartement vers Notion</h1>
+      <div class="row">
+        <div class="col-3">
+          <button class="btn btn-success" type="button" id="importButton">
+            Remplir depuis la page
+          </button>
+        </div>
+        <div class="col-3" id="resultMessage"></div>
+      </div>
+      <form action="" id="apartmentForm" class="form-floating">
+        <div class="row mb-3">
+          <div class="col-6">
+            <div class="form-check form-check-reverse mb-3 mt-3">
+              <label class="form-check-label" for="prefere">Préféré</label>
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value=""
+                id="prefere"
+                name="prefere"
+              />
+            </div>
+
+            <div class="form-floating mb-3">
+              <input
+                type="url"
+                pattern="https://.+"
+                placeholder="https://example.com"
+                class="form-control"
+                name="url"
+                id="url"
+                required
+              />
+              <label for="url">URL</label>
+              <div class="invalid-feedback">
+                Il faut entrer une url (https://...)
+              </div>
+            </div>
+            <div class="form-floating mb-3">
+              <input
+                type="text"
+                class="form-control"
+                name="nom"
+                id="nom"
+                placeholder="nom"
+                required
+              />
+              <label for="nom">Nom</label>
+              <div class="invalid-feedback">Il faut entrer un nom</div>
+            </div>
+
+            <div class="form-floating mb-3">
+              <input
+                type="text"
+                class="form-control"
+                name="lieu"
+                id="lieu"
+                placeholder="lieu"
+              />
+              <label for="lieu">Lieu</label>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="mb-3">
+              <h3>
+                Images&nbsp;
+                <button
+                  type="button"
+                  class="btn btn-outline-primary"
+                  id="addImage"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    fill="currentColor"
+                    class="bi bi-plus-circle"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"
+                    />
+                    <path
+                      d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"
+                    />
+                  </svg>
+                </button>
+              </h3>
+            </div>
+            <div id="imageDiv"></div>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col">
+            <div class="input-group">
+              <div class="form-floating">
+                <input
+                  type="text"
+                  class="form-control"
+                  name="prix"
+                  id="prix"
+                  placeholder="Loyer mensuel"
+                  pattern="[0-9]+"
+                  required
+                />
+                <label for="prix">Prix</label>
+                <div class="invalid-feedback">
+                  Il faut entrer un loyer mensuel (chiffre)
+                </div>
+              </div>
+              <span class="input-group-text">€ / mois</span>
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="input-group">
+              <div class="form-floating">
+                <input
+                  type="text"
+                  class="form-control"
+                  name="surface"
+                  id="surface"
+                  placeholder="Surface en m²"
+                  pattern="[0-9]+"
+                  required
+                />
+                <label for="surface">Surface</label>
+                <div class="invalid-feedback">
+                  Il faut entrer une surface (chiffre)
+                </div>
+              </div>
+              <span class="input-group-text">m²</span>
+            </div>
+          </div>
+        </div>
+
+        <button class="btn btn-primary" type="submit" id="submitButton">
+          Envoyer vers notion
+        </button>
+
+        <div class="row">
+          <div class="col-3"></div>
+          <div class="col-6">
+            <div class="mb-3">
+              <h3>
+                Commentaires&nbsp;
+                <button
+                  type="button"
+                  class="btn btn-outline-primary"
+                  id="addComment"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    fill="currentColor"
+                    class="bi bi-plus-circle"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"
+                    />
+                    <path
+                      d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"
+                    />
+                  </svg>
+                </button>
+              </h3>
+            </div>
+            <div id="commentDiv"></div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="modal" id="errorModal" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title error">Erreur</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body"></div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-danger"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
   </body>
 </html>
