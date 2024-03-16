@@ -22,10 +22,12 @@
   },
   "homepage": "https://github.com/ulvy11/apartment-chrome-extension#readme",
   "dependencies": {
+    "bootstrap": "^5.3.3",
     "dotenv": "^16.4.5",
     "jquery": "^3.7.1"
   },
   "devDependencies": {
+    "@types/bootstrap": "^5.2.10",
     "@types/chrome": "^0.0.263",
     "@types/jquery": "^3.5.29",
     "@types/node": "^20.11.25",
