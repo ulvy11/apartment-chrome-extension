@@ -12,6 +12,15 @@ export class Utils {
     console.log(JSON.stringify(object, null, 5));
   }
 
+  public static async getTabUrl(): Promise<String> {
+    const tabData = await chrome.tabs.query({
+      active: true,
+      currentWindow: true,
+    });
+
+    return tabData[0].url ?? "";
+  }
+
   public static async executeScriptOnCurrentTab<Result>(
     func: () => Result
   ): Promise<ResultAndTabId<Result>> {

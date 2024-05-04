@@ -17,6 +17,12 @@ export class FillerManager {
   }
 
   private async askHost() {
+    const tabUrl = await Utils.getTabUrl();
+    if (tabUrl.startsWith("chrome://")) {
+      this.handleHost("");
+      return;
+    }
+
     const res = await Utils.executeScriptOnCurrentTab(() => {
       return document.location.hostname;
     });
