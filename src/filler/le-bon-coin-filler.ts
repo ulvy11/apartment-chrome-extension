@@ -80,7 +80,7 @@ export class LeBonCoinFiller extends Filler {
       const tags = document.querySelectorAll("button");
 
       const tagsWithPhotos = Array.from(tags).find((tag) => {
-        const pattern = /Voir les [0-9]+ photos/;
+        const pattern = /Voir les ([0-9]+ )?photos/;
         return pattern.test(tag.innerText);
       });
 
